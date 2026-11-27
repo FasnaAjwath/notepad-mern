@@ -15,7 +15,7 @@ function Dashboard() {
 
   const getNotes = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/notes', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/notes`, {
         headers: { authorization: token }
       })
       setNotes(res.data)
@@ -27,7 +27,7 @@ function Dashboard() {
   const addNote = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:5000/api/notes', { title, content }, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/notes`, { title, content }, {
         headers: { authorization: token }
       })
       setTitle('')
@@ -40,7 +40,7 @@ function Dashboard() {
 
   const deleteNote = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/notes/${id}`, {
         headers: { authorization: token }
       })
       getNotes()
@@ -58,7 +58,7 @@ function Dashboard() {
   const updateNote = async (e) => {
     e.preventDefault()
     try {
-      await axios.put(`http://localhost:5000/api/notes/${editId}`,
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/notes/${editId}`,
       { title: editTitle, content: editContent }, {
         headers: { authorization: token }
       })
